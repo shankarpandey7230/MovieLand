@@ -1,14 +1,17 @@
 import { useState } from 'react';
 
 import './App.css';
+import Hero from './Components/Hero';
+import Display from './Components/Display';
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <>
-      <div>Hello there</div>
-    </>
+    <div className="wrapper">
+      {/* hero  section*/}
+      <Hero />
+      {/* Display */}
+      <Display />
+    </div>
   );
 }
 
