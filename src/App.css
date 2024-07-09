@@ -12,5 +12,23 @@ nav {
   /* background: url('https://www.omdbapi.com/src/poster.jpg'); */
 }
 .hero-content {
-  max-width: 490px;
+  max-width: 450px;
 }
+
+/* movie card */
+.movie-card-item {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(5px);
+  max-width: 450px;
+}
+.movie-card-item img {
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 768px) {
+  .movie-card-item img {
+    max-height: 220px;
+    object-fit: cover;
+  }
+}
+/* end of movie card */

@@ -1,4 +1,5 @@
 import React from 'react';
+import Card from './Card';
 
 const Hero = () => {
   const movieStyle = {
@@ -39,6 +40,9 @@ const Hero = () => {
             >
               Submit
             </button>
+          </div>
+          <div className="movie-card-display">
+            <Card />
           </div>
         </div>
       </div>
