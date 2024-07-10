@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Card = ({ searchMovie }) => {
+const Card = ({ searchMovie, deleteMovie }) => {
   const { Poster, Title, imdbRating, Plot } = searchMovie;
   //   const Poster = 'https://www.omdbapi.com/src/poster.jpg';
   return (
@@ -18,7 +18,9 @@ const Card = ({ searchMovie }) => {
             <button className="btn btn-info">Action</button>
           </div>
           <div className="d-grid mt-3">
-            <button className=" btn btn-danger">Delete</button>
+            <button onClick={deleteMovie} className=" btn btn-danger">
+              Delete
+            </button>
           </div>
         </div>
       </div>
