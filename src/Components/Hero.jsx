@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Card from './Card';
 import { fetchFromAPI } from '../utils/axios';
 import { randomChar } from '../utils/random';
@@ -6,9 +6,14 @@ import { randomChar } from '../utils/random';
 const Hero = () => {
   const [searchMovie, setSearchMovie] = useState({});
   const [bgImg, setBgImg] = useState('');
+  const fetchRequiredRef = useRef(true);
+  const searchRef = useRef('');
 
   useEffect(() => {
-    fetchMovies(randomChar());
+    if (fetchRequiredRef.current) {
+      fetchMovies(randomChar());
+      fetchRequiredRef.current = false;
+    }
   }, []);
 
   const fetchMovies = async (str) => {
@@ -16,6 +21,13 @@ const Hero = () => {
     // console.log(movie);
     setSearchMovie(movie);
     setBgImg(movie.Poster);
+  };
+
+  const handleMovieSearch = () => {
+    const str = searchRef.current.value;
+    // console.log(str);
+    fetchMovies(str);
+    searchRef.current.value = '';
   };
   const movieStyle = {
     backgroundImage: `url(${bgImg})`,
@@ -42,6 +54,7 @@ const Hero = () => {
           </div>
           <div className="input-group my-5">
             <input
+              ref={searchRef}
               type="text"
               className="form-control"
               placeholder="search for your movies"
@@ -49,11 +62,12 @@ const Hero = () => {
               aria-describedby="button-addon2"
             />
             <button
+              onClick={handleMovieSearch}
               className="btn  btn-danger"
               type="button"
               id="button-addon2"
             >
-              Submit
+              Search
             </button>
           </div>
           <div className="movie-card-display`">
