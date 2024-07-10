@@ -1,9 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from './Card';
+import { fetchFromAPI } from '../utils/axios';
+import { randomChar } from '../utils/random';
 
 const Hero = () => {
+  const [searchMovie, setSearchMovie] = useState({});
+  const [bgImg, setBgImg] = useState('');
+
+  useEffect(() => {
+    fetchMovies(randomChar());
+  }, []);
+
+  const fetchMovies = async (str) => {
+    const movie = await fetchFromAPI(str);
+    // console.log(movie);
+    setSearchMovie(movie);
+    setBgImg(movie.Poster);
+  };
   const movieStyle = {
-    backgroundImage: `url('https://www.omdbapi.com/src/poster.jpg' )`,
+    backgroundImage: `url(${bgImg})`,
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
     backgroundSize: 'cover',
@@ -41,8 +56,8 @@ const Hero = () => {
               Submit
             </button>
           </div>
-          <div className="movie-card-display">
-            <Card />
+          <div className="movie-card-display`">
+            <Card searchMovie={searchMovie} />
           </div>
         </div>
       </div>
