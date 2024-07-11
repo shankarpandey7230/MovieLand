@@ -5,12 +5,19 @@ import Hero from './Components/Hero';
 import Display from './Components/Display';
 
 function App() {
+  const [movieList, setMovieList] = useState([]);
+  const addMovieToDisplay = (movie) => {
+    // check for duplicate movies
+
+    const tempMovies = movieList.filter((item) => item.imdbID !== movie.imdbID);
+    setMovieList([...tempMovies, movie]);
+  };
   return (
     <div className="wrapper">
       {/* hero  section*/}
-      <Hero />
+      <Hero addMovieToDisplay={addMovieToDisplay} />
       {/* Display */}
-      <Display />
+      <Display movieList={movieList} />
     </div>
   );
 }

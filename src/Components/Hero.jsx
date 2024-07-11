@@ -3,7 +3,7 @@ import Card from './Card';
 import { fetchFromAPI } from '../utils/axios';
 import { randomChar } from '../utils/random';
 
-const Hero = () => {
+const Hero = ({ addMovieToDisplay }) => {
   const [searchMovie, setSearchMovie] = useState({});
   const [bgImg, setBgImg] = useState('');
   const fetchRequiredRef = useRef(true);
@@ -36,6 +36,11 @@ const Hero = () => {
     setSearchMovie({});
     setSearching(true);
   };
+  const handleListAdd = (types) => {
+    addMovieToDisplay({ ...searchMovie, types });
+    setSearchMovie({});
+    setSearching(true);
+  };
   const movieStyle = {
     backgroundImage: `url(${bgImg})`,
     backgroundRepeat: 'no-repeat',
@@ -61,7 +66,7 @@ const Hero = () => {
               </div>
             )}
 
-            <div className="input-group my-5">
+            <div className="input-group my-5 ">
               <input
                 ref={searchRef}
                 onFocus={() => setSearching(true)}
@@ -82,8 +87,12 @@ const Hero = () => {
             </div>
           </div>
           {!searching && (
-            <div className="movie-card-display showMovie">
-              <Card searchMovie={searchMovie} deleteMovie={handleOnDelete} />
+            <div className="movie-card-display showMovie ">
+              <Card
+                searchMovie={searchMovie}
+                deleteMovie={handleOnDelete}
+                handleListAdd={handleListAdd}
+              />
             </div>
           )}
         </div>

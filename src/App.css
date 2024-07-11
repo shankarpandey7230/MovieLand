@@ -47,7 +47,8 @@ nav {
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(5px);
   max-width: 450px;
-  height: auto;
+  margin-top: 80px;
+  /* height: auto; */
 }
 .movie-card-item img {
   width: 100%;
