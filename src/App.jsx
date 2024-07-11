@@ -1,16 +1,23 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import './App.css';
 import Hero from './Components/Hero';
 import Display from './Components/Display';
+import { addToLocalStorage, getLocalStorage } from './utils/localStorage';
 
 function App() {
   const [movieList, setMovieList] = useState([]);
+
+  useEffect(() => {
+    const myList = getLocalStorage();
+    myList?.length && setMovieList(myList);
+  }, []);
   const addMovieToDisplay = (movie) => {
     // check for duplicate movies
 
     const tempMovies = movieList.filter((item) => item.imdbID !== movie.imdbID);
     setMovieList([...tempMovies, movie]);
+    addToLocalStorage([...tempMovies, movie]);
   };
   const handleMovieFunc = (imdbID) => {
     // alert(imdbID);
