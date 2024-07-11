@@ -23,6 +23,10 @@ function App() {
     // alert(imdbID);
     confirm('Are you sure you want to delete this movie') &&
       setMovieList(movieList.filter((movie) => movie.imdbID !== imdbID));
+    const localMoviesDeleted = movieList.filter(
+      (movie) => movie.imdbID !== imdbID
+    );
+    addToLocalStorage(localMoviesDeleted);
   };
   return (
     <div className="wrapper">
