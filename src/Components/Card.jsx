@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Card = ({ searchMovie, deleteMovie, handleListAdd }) => {
-  const { Poster, Title, imdbRating, Plot, types } = searchMovie;
+  const { Poster, Title, imdbRating, Plot, types, imdbID } = searchMovie;
   console.log(searchMovie);
   //   const Poster = 'https://www.omdbapi.com/src/poster.jpg';
   return (
@@ -32,7 +32,10 @@ const Card = ({ searchMovie, deleteMovie, handleListAdd }) => {
           )}
 
           <div className="d-grid mt-3">
-            <button onClick={deleteMovie} className=" btn btn-danger">
+            <button
+              onClick={() => deleteMovie(imdbID)}
+              className=" btn btn-danger"
+            >
               Delete
             </button>
           </div>

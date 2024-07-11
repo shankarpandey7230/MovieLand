@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Card from './Card';
 
-const Display = ({ movieList }) => {
+const Display = ({ movieList, handleMovieFunc }) => {
   // console.log(movieList);
   const [displayList, setDisplayList] = useState([]);
 
@@ -55,7 +55,7 @@ const Display = ({ movieList }) => {
           <div className="col d-flex justify-content-around gap-2 flex-wrap">
             {displayList.map((item, i) => (
               <div key={i} className="">
-                <Card searchMovie={item} />
+                <Card searchMovie={item} deleteMovie={handleMovieFunc} />
               </div>
             ))}
           </div>
